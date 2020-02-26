@@ -1,0 +1,49 @@
+<div  class="container">
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+      <form [formGroup]="SignupForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" formControlName="firstName">
+          <span class="help-block" *ngIf="!f.firstName.valid&&f.firstName.touched">
+            <span *ngIf="f.firstName.errors['nameIsForbidden']">name is invalid</span>
+            <span *ngIf="f.firstName.errors['required']">field is required</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" formControlName="lastName">
+          <span class="help-block" *ngIf="!f.lastName.valid&&f.lastName.touched">
+            <span *ngIf="f.lastName.errors['nameIsForbidden']">name is invalid</span>
+            <span *ngIf="f.lastName.errors['required']">field is required</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+
+          <span class="help-block" *ngIf="!f.email.valid && f.email.touched">
+            please enter a valid email id
+          </span>
+        </div>
+
+
+
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input type="radio" [value]="gender" formControlName="gender">{{gender}}
+          </label>
+        </div>
+
+        <span class="help-block" *ngIf="!SignupForm.valid && SignupForm.touched">
+          please enter valid data
+        </span>
+
+        <button class="btn btn-primary" [hidden]="!SignupForm.valid" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
